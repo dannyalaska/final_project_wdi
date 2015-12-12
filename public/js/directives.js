@@ -59,10 +59,11 @@
     scope.redraw = function() {
       var x, y, xAxis, yAxis, dataset, options = scope.getOptions(), xValues = scope.getX(), yValues = scope.y;
       if (xValues && yValues) {
+        d3.scale.category20c();
         x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
         y = d3.scale.linear().domain([0, d3.max(yValues)]).range([options.height, 0]);
-        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(10);
-        yAxis = d3.svg.axis().scale(y).orient('left').ticks(5);
+        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(1).tickFormat(d3.time.minute);
+        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(3, 3);
 
         scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);

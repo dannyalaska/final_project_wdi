@@ -1,0 +1,24 @@
+.chart {
+  border: 1px dashed grey;
+}
+.chart .domain {
+  fill: none;
+  stroke-width: 5;
+  stroke: #D4D4D1;
+}
+
+.chart .bar {
+  fill: #56BEEB;
+}
+
+.chart .bar:hover {
+  fill: #54EEEE;
+}
+
+.x {
+  font-size: 2em;
+}
+
+.y {
+  font-size: 1.5em;
+}

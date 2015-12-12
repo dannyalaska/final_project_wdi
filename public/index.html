@@ -6,7 +6,7 @@
   <link rel='stylesheet' href='/css/bootstrap.min.css'>
   <link rel='stylesheet' href='/css/bootstrap-theme.min.css'>
   <link rel='stylesheet' href='/css/angular-csp.css'>
-  <link rel='stylesheet' href='/css/app.css.scss'>
+  <link rel='stylesheet' href='/css/app.css'>
 </head>
 <body>
 
@@ -26,23 +26,23 @@
     </form>
     <div class="container" id="bar-graph">
       <div>
-        <h3>Cardio? Is that Spanish?</h3>
+        <h3>Cardio? You know I don't speak spanish.</h3>
       </div>
       <div class="row">
         <div class="col-sm-6">
           <div bar-chart="set.y" x="set.x" class="content"></div>
           <form role="form" ng-submit="randomize()" ng-init="randomize()">
             <div class="form-group">
-              <label>Number of bars:</label>
+              <label>Time of Workout:</label>
               <input type="number" class="form-control" ng-model="n" />
             </div>
             <div class="form-group">
               <label>Minimum value of bar:</label>
-              <input type="number" class="form-control" ng-model="min" />
+              <input type="number" class="form-control" ng-model="min" min="1"/>
             </div>
             <div class="form-group">
-              <label>Maximum value of bar:</label>
-              <input type="number" class="form-control" ng-model="max" />
+              <label>Rate of Perceived Exertion:</label>
+              <input type="number" class="form-control" ng-model="max" max="10"/>
             </div>
             <button type="submit" class="btn btn-default">Generate chart</button>
           </form>
