@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang='en' ng-app='cardioTest'>
+<head>
+  <title>Cardio Stuff</title>
+  <link rel='stylesheet' href='/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='/css/bootstrap-theme.min.css'>
+  <link rel='stylesheet' href='/css/angular-csp.css'>
+  <link rel='stylesheet' href='/css/app.css.scss'>
+</head>
+<body>
+
+  <div class= "container" ng-controller='intervalCtrl as cardio'>
+    <h1>{{cardio.greeting}}</h1>
+    <form>
+      <div class='form-group col-md-6 col-md-offset-3'>
+        <label for='minutes' class='sr-only'>{{cardio.greeting}}</label>
+        <input type='text' ng-model='cardio.stuff' class='form-control'>
+        <h2>{{cardio.stuff}}</h2>
+        <input ng-model='cardio.days' name='days' type='number' max='7' min='1' autofocus class='form-control days' placeholder='Days You Can Work Out'>
+        <input ng-model='cardio.minutes' name='days' type='number' min='1' max='300' autofocus class='form-control days' placeholder='Total Time Per Week(in minutes)'>
+      </div>
+      <div class='form-group col-md-6 col-md-offset-3 text-center'>
+        <button ng-click='search(minutes)' class='btn btn-primary btn-lg'>Search</button>
+      </div>
+    </form>
+    <div class="container" id="bar-graph">
+      <div>
+        <h3>Cardio? Is that Spanish?</h3>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div bar-chart="set.y" x="set.x" class="content"></div>
+          <form role="form" ng-submit="randomize()" ng-init="randomize()">
+            <div class="form-group">
+              <label>Number of bars:</label>
+              <input type="number" class="form-control" ng-model="n" />
+            </div>
+            <div class="form-group">
+              <label>Minimum value of bar:</label>
+              <input type="number" class="form-control" ng-model="min" />
+            </div>
+            <div class="form-group">
+              <label>Maximum value of bar:</label>
+              <input type="number" class="form-control" ng-model="max" />
+            </div>
+            <button type="submit" class="btn btn-default">Generate chart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src='http://d3js.org/d3.v3.min.js'></script>
+  <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+  <script src='/lib/angular/angular.js'></script>
+  <script src='/lib/lodash/lodash.min.js'></script>
+  <script src='/lib/bootstrap.js'></script>
+  <script src='/js/app.js'></script>
+  <script src='/js/controllers.js'></script>
+  <script src='/js/directives.js'></script>
+
+
+
+</body>
+</html>

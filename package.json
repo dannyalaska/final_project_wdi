@@ -1,0 +1,25 @@
+{
+  "name": "cardiotest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "danny",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "body-parser": "^1.14.1",
+    "bootstrap": "^3.3.6",
+    "bower": "^1.7.0",
+    "d3": "^3.5.10",
+    "express": "^4.13.3",
+    "jsdom": "^7.2.0",
+    "lodash": "^3.10.1",
+    "morgan": "^1.6.1",
+    "n_": "0.0.8",
+    "vis": "^4.10.0"
+  }
+}
