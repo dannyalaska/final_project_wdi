@@ -2,7 +2,6 @@
   'use strict';
 
   angular.module("cardioTest.controllers").controller("intervalCtrl", function($scope) {
-    this.greeting = 'NEW GREETING!';
 
     $scope.set = {
       x: [ ],
@@ -11,61 +10,40 @@
 
     $scope.n = 20;
     $scope.min = 1;
-
     $scope.max = 10;
+    $scope.months = 1;
+    $scope.days = 3;
+    $scope.minutes = 300;
 
-    $scope.randomize = function() {
+    $scope.zoneFour = function() {
       $scope.set.x = [];
-      $scope.set.y = [1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 2, 2, 2, 2, 2];
-      _.times($scope.n, function(n) {
+      $scope.set.y = [];
+      _.times($scope.hiit * 2 || 40, function(n) {
         $scope.set.x.push(n + 1);
         $scope.set.y.push(_.random($scope.min, $scope.max));
       });
     };
 
-    // $scope.lsd = switch ($scope.total) {
-    //   case 1:
-    //     return $scope.lsd = $scope.total;
-    //     console.log($scope.lsd);
-    //     break;
-    //   case 2:
-    //     return $scope.lsd = Math.floor($scope.total * 0.5);
-    //     break;
-    //   case 3:
-    //     return $scope.lsd = Math.floor($scope.total * 0.4);
-    //     break;
-    //   case 4:
-    //     return $scope.lsd = Math.floor($scope.total * 0.33);
-    //     break;
-    //   case 5:
-    //     return $scope.lsd = Math.floor($scope.total * 0.25);
-    //     break;
-    // };
-    //
-    // function getLsd(days) {
-    //   var options = {
-    //     1: function() {
-    //       return $scope.lsd = $scope.total;
-    //       return $scope.lsd;
-    //     },
-    //
-    //     2: function() {
-    //       return $scope.lsd = Math.floor($scope.total * 0.5);
-    //     },
-    //
-    //     3: function() {
-    //       return $scope.lsd = Math.floor($scope.total * 0.4);
-    //     },
-    //
-    //     4: function() {
-    //       return $scope.lsd = Math.floor($scope.total * 0.33);
-    //     },
-    //
-    //     5: function() {
-    //       return $scope.lsd = Math.floor($scope.total * 0.25);
-    //     },
-    //   };
-    // };
+    $scope.zoneThree = function() {
+      $scope.max = 7;
+      $scope.set.x = [];
+      $scope.set.y = [];
+      _.times($scope.mid * 1.5 || 40, function(n) {
+        $scope.set.x.push(n + 1);
+        $scope.set.y.push(_.random($scope.min, $scope.max));
+      });
+    };
+
+    $scope.zoneOne = function() {
+      $scope.max = 5;
+      $scope.set.x = [];
+      $scope.set.y = [];
+      var longSlow = $scope.lsd();
+      _.times(longSlow || 40, function(n) {
+        $scope.set.x.push(n + 1);
+        $scope.set.y.push(_.random($scope.min, $scope.max));
+      });
+    };
 
     $scope.getPlan = function() {
       var mins = $scope.minutes;
@@ -77,6 +55,20 @@
           $scope.low =  Math.floor($scope.total * 0.8);
           $scope.mid =  Math.floor($scope.total * 0.12);
           $scope.high = Math.floor($scope.total * 0.08);
+          $scope.hiit = Math.floor($scope.high);
+          $scope.miit = Math.floor($scope.mid * 0.33);
+          $scope.lsd = function() {
+            if ($scope.days == 1) {
+              return $scope.total;
+            } else if ($scope.days == 2) {
+              return Math.floor($scope.total * 0.5);
+            } else if ($scope.days == 3) {
+              return Math.floor($scope.total * 0.4);
+            } else if ($scope.days == 4) {
+              return Math.floor($scope.total * 0.33);
+            } Math.floor($scope.total * 0.25);
+          };
+
           break;
         case 2:
           console.log('8 week plan');
@@ -84,6 +76,20 @@
           $scope.low =  Math.floor($scope.total * 0.8);
           $scope.mid =  Math.floor($scope.total * 0.12);
           $scope.high = Math.floor($scope.total * 0.08);
+          $scope.hiit = Math.floor($scope.high);
+          $scope.miit = Math.floor($scope.mid * 0.33);
+          $scope.lsd = function() {
+            if ($scope.days == 1) {
+              return $scope.total;
+            } else if ($scope.days == 2) {
+              return Math.floor($scope.total * 0.5);
+            } else if ($scope.days == 3) {
+              return Math.floor($scope.total * 0.4);
+            } else if ($scope.days == 4) {
+              return Math.floor($scope.total * 0.33);
+            } Math.floor($scope.total * 0.25);
+          };
+
           break;
         case 3:
           console.log('12 week plan');
@@ -91,40 +97,25 @@
           $scope.low =  Math.floor($scope.total * 0.8);
           $scope.mid =  Math.floor($scope.total * 0.12);
           $scope.high = Math.floor($scope.total * 0.08);
+          $scope.hiit = Math.floor($scope.high);
+          $scope.miit = Math.floor($scope.mid * 0.33);
+          $scope.lsd = function() {
+            if ($scope.days == 1) {
+              return $scope.total;
+            } else if ($scope.days == 2) {
+              return Math.floor($scope.total * 0.5);
+            } else if ($scope.days == 3) {
+              return Math.floor($scope.total * 0.4);
+            } else if ($scope.days == 4) {
+              return Math.floor($scope.total * 0.33);
+            } Math.floor($scope.total * 0.25);
+          };
+
           break;
         default:
           console.log('default');
       }
     };
-
-    // function getLsd(days) {
-    //       var options = {
-    //         1: function() {
-    //           return $scope.lsd = $scope.total;
-    //           return $scope.lsd;
-    //         },
-    //
-    //         2: function() {
-    //           return $scope.lsd = Math.floor($scope.total * 0.5);
-    //         },
-    //
-    //         3: function() {
-    //           return $scope.lsd = Math.floor($scope.total * 0.4);
-    //         },
-    //
-    //         4: function() {
-    //           return $scope.lsd = Math.floor($scope.total * 0.33);
-    //         },
-    //
-    //         5: function() {
-    //           return $scope.lsd = Math.floor($scope.total * 0.25);
-    //         },
-    //       };
-    //     };
-    //
-    // var days = $scope.days;
-    // getLsd(days);
-
   });
 
 }(angular, _));

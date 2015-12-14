@@ -2,16 +2,16 @@
   'use strict';
 
   angular.module('cardioTest.directives', []).directive("barChart", function() {
-  var directive = {};
-  directive.restrict = 'AE';
+    var directive = {};
+    directive.restrict = 'AE';
 
-  directive.scope = {
+    directive.scope = {
     x: '=?',
     y: '=barChart',
     options: '=?',
   };
 
-  directive.link = function(scope, elements, attr) {
+    directive.link = function(scope, elements, attr) {
     scope.svg = null;
     scope.container = null;
 
@@ -28,8 +28,8 @@
 
     scope.getOptions = function() {
       return _.merge({
-        width: 1000,
-        height: 400,
+        width: 2000,
+        height: 800,
         margin: {
           top: 10,
           right: 10,
@@ -53,21 +53,22 @@
       scope.svg.attr('viewBox', '0 0 ' + (options.width + options.margin.left + options.margin.right) + ' ' +
         (options.height + options.margin.top + options.margin.bottom))
         .attr('preserveAspectRatio', 'xMinYMin');
-      scope.redraw();
+      scope.redrawX();
     };
 
-    scope.redraw = function() {
+    scope.redrawX = function() {
       var x, y, xAxis, yAxis, dataset, options = scope.getOptions(), xValues = scope.getX(), yValues = scope.y;
+      console.log(scope.y);
       if (xValues && yValues) {
         d3.scale.category20c();
         x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
         y = d3.scale.linear().domain([0, d3.max(yValues)]).range([options.height, 0]);
         xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(1);
         yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(3, 3);
-
         scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);
         dataset = scope.container.selectAll('.bar').data(yValues);
+        console.log(yValues);
         dataset.enter().append('rect').attr('class', 'bar');
         dataset.transition().attr('x', function(d, i) {
           return i * x.rangeBand();
@@ -83,10 +84,42 @@
       }
     };
 
-    scope.$watch('x', scope.redraw);
-    scope.$watch('y', scope.redraw);
-    scope.$watch('options', scope.setSvgSize);
+    scope.redrawY = function() {
+      var x, y, xAxis, yAxis, dataset, options = scope.getOptions(), xValues = scope.getX(), yValues = scope.y;
+      console.log(scope.y);
+      if (xValues && yValues) {
+        var warmup = [2, 2, 2, 2, 2, 7, 7, 7, 6, 5, 4, 3, 2, 1];
+        for (var i = 0; i < warmup.length; i++) {
+          scope.y.unshift(warmup[i]);
+        };
 
+        d3.scale.category20c();
+        x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
+        y = d3.scale.linear().domain([0, d3.max(yValues)]).range([options.height, 0]);
+        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(1);
+        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(3, 3);
+        scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
+        scope.container.selectAll('g.y').call(yAxis);
+        dataset = scope.container.selectAll('.bar').data(yValues);
+        console.log(yValues);
+        dataset.enter().append('rect').attr('class', 'bar');
+        dataset.transition().attr('x', function(d, i) {
+          return i * x.rangeBand();
+        }).attr('width', function() {
+          return x.rangeBand() - 5;
+        }).attr('height', function(d) {
+          return options.height - y(d);
+        }).attr('y', function(d) {
+          return y(d);
+        });
+
+        dataset.exit().remove();
+      }
+    };
+
+    scope.$watch('x', scope.redrawX);
+    scope.$watch('y', scope.redrawY);
+    scope.$watch('options', scope.setSvgSize);
     scope.initialize();
   };
 
