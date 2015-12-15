@@ -10,11 +10,11 @@
 }
 
 .chart .bar {
-  fill: #56BEEB;
+  fill: #fb8d0d;
 }
 
 .chart .bar:hover {
-  fill: #54EEEE;
+  fill: #719ef7;
 }
 
 .x {
@@ -26,4 +26,25 @@
 }
 .info {
   margin: 15px;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(113, 158, 247, 0.88);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 2;
+  color: rgba(255, 255, 255);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
 }

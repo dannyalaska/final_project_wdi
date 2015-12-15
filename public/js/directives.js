@@ -40,11 +40,22 @@
     };
 
     scope.initialize = function() {
+
       scope.svg = d3.select(elements[0]).append('svg').attr('class', 'chart');
       scope.container = scope.svg.append('g');
       scope.container.append('g').attr('class', 'x');
       scope.container.append('g').attr('class', 'y');
       scope.setSvgSize();
+      scope.svg.call(tip);
+
+      scope.svg.selectAll('rect')
+      .append('rect')
+      .attr('width', function() { return x.rangeBand() })
+      .attr('height', function(d) { return h - y(d) })
+      .attr('y', function(d) { return y(d) })
+      .attr('x', function(d, i) { return x(i) })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
     };
 
     scope.setSvgSize = function() {
@@ -58,7 +69,6 @@
 
     scope.redrawX = function() {
       var x, y, xAxis, yAxis, dataset, options = scope.getOptions(), xValues = scope.getX(), yValues = scope.y;
-      console.log(scope.y);
       if (xValues && yValues) {
         d3.scale.category20c();
         x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
@@ -67,8 +77,7 @@
         yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(3, 3);
         scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);
-        dataset = scope.container.selectAll('.bar').data(yValues);
-        console.log(yValues);
+        dataset = scope.container.selectAll('.bar').data(yValues).on('mouseover', tip.show).on('mouseout', tip.hide);
         dataset.enter().append('rect').attr('class', 'bar');
         dataset.transition().attr('x', function(d, i) {
           return i * x.rangeBand();
@@ -84,9 +93,12 @@
       }
     };
 
+    /* Initialize tooltip */
+    var tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d;
+  });
+
     scope.redrawY = function() {
       var x, y, xAxis, yAxis, dataset, options = scope.getOptions(), xValues = scope.getX(), yValues = scope.y;
-      console.log(scope.y);
       if (xValues && yValues) {
         var warmup = [2, 2, 2, 2, 2, 7, 7, 7, 6, 5, 4, 3, 2, 1];
         for (var i = 0; i < warmup.length; i++) {
@@ -100,9 +112,11 @@
         yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(3, 3);
         scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);
-        dataset = scope.container.selectAll('.bar').data(yValues);
-        console.log(yValues);
-        dataset.enter().append('rect').attr('class', 'bar');
+        dataset = scope.container.selectAll('.bar').data(yValues).on('mouseover', tip.show).on('mouseout', tip.hide);
+        dataset
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
         dataset.transition().attr('x', function(d, i) {
           return i * x.rangeBand();
         }).attr('width', function() {

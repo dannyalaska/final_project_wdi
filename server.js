@@ -19,7 +19,7 @@ app.use(morgan('combined'));
 
 // serve static files from the public directory
 app.use(express.static(__dirname + '/public'));
-
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 // set up a default route
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');

@@ -18,7 +18,7 @@
     $scope.zoneFour = function() {
       $scope.set.x = [];
       $scope.set.y = [];
-      _.times($scope.hiit * 2 || 40, function(n) {
+      _.times($scope.hiit * 2, function(n) {
         $scope.set.x.push(n + 1);
         $scope.set.y.push(_.random($scope.min, $scope.max));
       });
@@ -28,7 +28,7 @@
       $scope.max = 7;
       $scope.set.x = [];
       $scope.set.y = [];
-      _.times($scope.mid * 1.5 || 40, function(n) {
+      _.times($scope.mid * 1.5, function(n) {
         $scope.set.x.push(n + 1);
         $scope.set.y.push(_.random($scope.min, $scope.max));
       });
