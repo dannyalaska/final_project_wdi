@@ -39,7 +39,7 @@
       $scope.set.x = [];
       $scope.set.y = [];
       var longSlow = $scope.lsd();
-      _.times(longSlow || 40, function(n) {
+      _.times(longSlow, function(n) {
         $scope.set.x.push(n + 1);
         $scope.set.y.push(_.random($scope.min, $scope.max));
       });

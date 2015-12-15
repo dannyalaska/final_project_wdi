@@ -33,8 +33,8 @@
         margin: {
           top: 10,
           right: 10,
-          bottom: 30,
-          left: 50,
+          bottom: 50,
+          left: 10,
         },
       }, scope.options || {});
     };
@@ -44,7 +44,7 @@
       scope.svg = d3.select(elements[0]).append('svg').attr('class', 'chart');
       scope.container = scope.svg.append('g');
       scope.container.append('g').attr('class', 'x');
-      scope.container.append('g').attr('class', 'y');
+      scope.container.append('g').attr('class', 'y', 'grid');
       scope.setSvgSize();
       scope.svg.call(tip);
 
@@ -68,13 +68,15 @@
     };
 
     scope.redrawX = function() {
+
       var x, y, xAxis, yAxis, dataset, options = scope.getOptions(), xValues = scope.getX(), yValues = scope.y;
       if (xValues && yValues) {
         d3.scale.category20c();
+        _.dropRight(xValues, 15);
         x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
         y = d3.scale.linear().domain([0, d3.max(yValues)]).range([options.height, 0]);
-        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(1);
-        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(3, 3);
+        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(10).tickSize(50);
+        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(1, 1);
         scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);
         dataset = scope.container.selectAll('.bar').data(yValues).on('mouseover', tip.show).on('mouseout', tip.hide);
@@ -82,7 +84,7 @@
         dataset.transition().attr('x', function(d, i) {
           return i * x.rangeBand();
         }).attr('width', function() {
-          return x.rangeBand() - 5;
+          return x.rangeBand() - 15;
         }).attr('height', function(d) {
           return options.height - y(d);
         }).attr('y', function(d) {
@@ -102,25 +104,25 @@
       if (xValues && yValues) {
         var warmup = [2, 2, 2, 2, 2, 7, 7, 7, 6, 5, 4, 3, 2, 1];
         for (var i = 0; i < warmup.length; i++) {
-          scope.y.unshift(warmup[i]);
-        };
+          _.dropRight(scope.y.unshift(warmup[i]), 15);
 
+        };
         d3.scale.category20c();
         x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
         y = d3.scale.linear().domain([0, d3.max(yValues)]).range([options.height, 0]);
-        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(1);
-        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(3, 3);
+        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(1).tickSize(5);
+        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(-2000);
         scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);
         dataset = scope.container.selectAll('.bar').data(yValues).on('mouseover', tip.show).on('mouseout', tip.hide);
         dataset
         .enter()
         .append('rect')
-        .attr('class', 'bar')
+        .attr('class', 'bar');
         dataset.transition().attr('x', function(d, i) {
           return i * x.rangeBand();
         }).attr('width', function() {
-          return x.rangeBand() - 5;
+          return x.rangeBand() - 10;
         }).attr('height', function(d) {
           return options.height - y(d);
         }).attr('y', function(d) {
