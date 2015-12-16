@@ -4,8 +4,8 @@
   angular.module("cardioTest.controllers").controller("intervalCtrl", function($scope) {
 
     $scope.set = {
-      x: [ ],
-      y: [ ],
+      x: [1 ],
+      y: [1 ],
     };
 
     $scope.n = 20;

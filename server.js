@@ -11,7 +11,6 @@ var _ = require('lodash');
 
 var document = jsdom.jsdom();
 var svg      = d3.select(document.body).append('svg');
-var svg2     = d3.select(document.body).append('svg2');
 /************/
 
 // let's get some good logging in the console
