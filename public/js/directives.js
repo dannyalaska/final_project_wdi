@@ -38,7 +38,7 @@
         },
       }, scope.options || {});
     };
-    window.setTimeout(scope.initialize(), 10000);
+
     scope.initialize = function() {
       scope.svg = d3.select(elements[0]).append('svg').attr('class', 'chart');
       scope.container = scope.svg.append('g');
