@@ -1,15 +1,34 @@
-
+body {
+  background: #F4F0E5;
+  color: #4a423c;
+  font-family: 'Montserrat', sans-serif;
+}
 .chart {
   position: relative;
   margin: 20px;
-  padding: 20px;
+  padding-left: 10px;
+  padding-top: 10px;
   overflow: hidden;
+  box-shadow: 1px 1px 2px 2px #6FA1B8;
+  border-radius: 10px;
 }
 .chart .domain {
-  fill: none;
+  fill: white;
   stroke-width: 5;
   stroke: #D4D4D1;
   overflow: hidden;
+}
+
+.col-md-4 {
+  text-align: center;
+}
+
+.col-md-4:hover{
+    -webkit-transform:scale(1.3); /* Safari and Chrome */
+    -moz-transform:scale(1.3); /* Firefox */
+    -ms-transform:scale(1.3); /* IE 9 */
+    -o-transform:scale(1.3); /* Opera */
+     transform:scale(1.3);
 }
 line {
     stroke: lightgrey;
@@ -19,11 +38,11 @@ line {
 }
 
 .chart .bar {
-  fill: #fb8d0d;
+  fill: #FD903B;
 }
 
 .chart .bar:hover {
-  fill: #719ef7;
+  fill: #FF4D50;
 }
 
 .x {
@@ -44,8 +63,6 @@ line {
   color: #fff;
   border-radius: 2px;
 }
-
-
 .d3-tip:after {
   box-sizing: border-box;
   display: inline;
@@ -61,4 +78,67 @@ line {
   height: 100%;
   width: 100%;
   overflow: hidden;
+}
+.col-md-4 {
+  display: inline;
+}
+.form-control {
+  border: inset 2px #E0C4AE;
+  font-size: 1.2em;
+}
+.btn {
+  margin: 10px;
+  border-radius: 45px;
+  border: outset 4px #F4F0E5;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: 25%;
+  color: white;
+  box-shadow: 1px 1px 2px 2px #E0C4AE;
+}
+.btn-primary {
+    background: #E15E30;
+    color: #ffffff;
+    height: 100px;
+    width: 250px;
+    display: block;
+    margin-left: 30%;
+    margin-top: -12%;
+    position: absolute;
+}
+.btn-default {
+  background: #A82544;
+}
+.btn:hover {
+  background: #E15E6E;
+}
+#top {
+  margin: 15px;
+  margin-left: 15%
+}
+#plan {
+  margin-left: -9%;
+  width: 40%;
+}
+.row {
+  margin-left: -10%;
+  width: 40%;
+}
+ul {
+  margin-left: -5%;
+}
+li {
+  font-size: 1.2em;
+  text-shadow: 1px #6FA1B8;
+  text-transform: capitalize;
+  display: list-item;
+  margin: 4px;
+  color: #FD903B;
+  border: inset 2px #6FA1B8;
+  border-radius: 8px;
+}
+footer {
+  margin-top: 5%;
+  float: right;
 }
