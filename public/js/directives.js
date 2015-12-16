@@ -49,7 +49,7 @@
 
       scope.svg.selectAll('rect')
       .append('rect')
-      .attr('width', function() { return x.rangeBand() })
+      .attr('width', function() { return x.rangeBand() || 1 })
       .attr('height', function(d) { return h - y(d) })
       .attr('y', function(d) { return y(d) })
       .attr('x', function(d, i) { return x(i) })
