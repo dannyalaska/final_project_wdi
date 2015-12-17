@@ -14,3 +14,6 @@
 + lodash
 + morgan
 + vis
++ jquery
++ javascript
++ hard work
