@@ -145,6 +145,11 @@ li {
   border: inset 2px #6FA1B8;
   border-radius: 8px;
 }
+.article {
+  margin: 15px;
+  margin-top: 20px;
+  width: 75%;
+}
 footer {
   margin-top: 5%;
   float: right;
