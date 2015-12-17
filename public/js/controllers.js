@@ -75,9 +75,9 @@
           $scope.total = Math.floor(mins * 0.8);
           $scope.low =  Math.floor($scope.total * 0.8);
           $scope.mid =  Math.floor($scope.total * 0.12);
-          $scope.high = Math.floor($scope.total * 0.08);
+          $scope.high = Math.floor($scope.total * 0.1);
           $scope.hiit = Math.floor($scope.high);
-          $scope.miit = Math.floor($scope.mid * 0.33);
+          $scope.miit = Math.floor($scope.mid * 0.4);
           $scope.lsd = function() {
             if ($scope.days == 1) {
               return $scope.total;
@@ -94,7 +94,7 @@
         case 3:
           console.log('12 week plan');
           $scope.total = Math.floor(mins * 0.9);
-          $scope.low =  Math.floor($scope.total * 0.8);
+          $scope.low =  Math.floor($scope.total * 0.7);
           $scope.mid =  Math.floor($scope.total * 0.12);
           $scope.high = Math.floor($scope.total * 0.08);
           $scope.hiit = Math.floor($scope.high);
