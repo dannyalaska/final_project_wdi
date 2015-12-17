@@ -28,12 +28,12 @@
 
     scope.getOptions = function() {
       return _.merge({
-        width: 2000,
-        height: 800,
+        width: 3000,
+        height: 1500,
         margin: {
           top: 10,
           right: 10,
-          bottom: 50,
+          bottom: 80,
           left: 10,
         },
       }, scope.options || {});
@@ -74,8 +74,8 @@
         _.dropRight(xValues, 15);
         x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
         y = d3.scale.linear().domain([0, d3.max(yValues)]).range([options.height, 0]);
-        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(10).tickSize(50);
-        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(1, 1);
+        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(0).tickSize(50);
+        yAxis = d3.svg.axis().scale(y).orient('left').ticks(0).tickSize(500, 500);
         scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);
         dataset = scope.container.selectAll('.bar').data(yValues).on('mouseover', tip.show).on('mouseout', tip.hide);
@@ -109,9 +109,9 @@
         d3.scale.category20c();
         x = d3.scale.ordinal().domain(xValues).rangeRoundBands([0, options.width], 0);
         y = d3.scale.linear().domain([0, d3.max(yValues)]).range([options.height, 0]);
-        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(1).tickSize(5);
-        yAxis = d3.svg.axis().scale(y).orient('left').ticks(10).tickSize(-2000);
-        scope.container.selectAll('g.x').attr('transform', "translate(0, " + options.height + ")").call(xAxis);
+        xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(0).tickSize(5);
+        yAxis = d3.svg.axis().scale(y).orient('left').ticks(0).tickSize(-3000);
+        scope.container.selectAll('g.x').attr('transform', "translate(-30, " + options.height + ")").call(xAxis);
         scope.container.selectAll('g.y').call(yAxis);
         dataset = scope.container.selectAll('.bar').data(yValues).on('mouseover', tip.show).on('mouseout', tip.hide);
         dataset

@@ -13,7 +13,7 @@
     $scope.max = 10;
     $scope.months = 1;
     $scope.days = 3;
-    $scope.minutes = 300;
+    $scope.minutes = 160;
 
     $scope.zoneFour = function() {
       $scope.set.x = [];

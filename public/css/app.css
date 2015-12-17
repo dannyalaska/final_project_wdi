@@ -48,15 +48,16 @@ line {
 }
 
 .x {
-  font-size: 1.2em;
+  font-size: 5em;
 
 }
 .y {
-  font-size: 1em;
+  font-size: 5em;
+  margin-right: 20px;
 
 }
 .tick text{
-  margin: 1px;
+  margin: 5px;
   float: left;
 }
 .info {
